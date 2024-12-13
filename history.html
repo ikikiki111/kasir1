@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Pesanan</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('background.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+
+        }
+        .navbar {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .navbar a.active, .navbar a:hover {
+            background-color: #c0392b;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f8f8f8;
+        }
+        .status-checkbox {
+            display: inline-block;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="pembayaran.html">Pembayaran</a>
+        <a href="pesanan_baru.html">pesanan baru</a>
+        <a href="history.html">history</a>
+        <a href="logout.html">Keluar</a>
+        <a href="payment.html">Pembayaran</a>
+    </div>
+    <div class="container">
+        <h1>History Pesanan</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Customer</th>
+                    <th>Tanggal Pesan</th>
+                    <th>Keterangan</th>
+                    <th>No Meja</th>
+                    <th>Status Pembayaran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Aliyah Putri</td>
+                    <td>2024-12-10</td>
+                    <td>Extra Pedas</td>
+                    <td>2</td>
+                    <td><input type="checkbox" class="status-checkbox" name="status1" checked disabled></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Rizky Ananda</td>
+                    <td>2024-12-10</td>
+                    <td>Tanpa Bawang</td>
+                    <td>7</td>
+                    <td><input type="checkbox" class="status-checkbox" name="status2" checked disabled></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Nova Hidayah</td>
+                    <td>2024-12-09</td>
+                    <td>Porsi Jumbo</td>
+                    <td>5</td>
+                    <td><input type="checkbox" class="status-checkbox" name="status3" disabled></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="printReport()">Cetak Laporan</button>
+    </div>
+
+    <script>
+        // Fungsi untuk mencetak laporan
+        function printReport() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pembayaran QRIS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        .qr-code {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .qr-code img {
+            max-width: 250px;
+            height: auto;
+        }
+        .payment-details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .timer {
+            font-size: 18px;
+            color: #dc3545;
+            margin-top: 15px;
+        }
+        .status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembayaran QRIS</h2>
+        
+        <div class="qr-code">
+            <img src="qris.jpg" alt="Kode QRIS" />
+        </div>
+        
+        <div class="payment-details">
+            <h3>Detail Pembayaran</h3>
+            <p>Total Tagihan: <strong>Rp 13.800.000</strong></p>
+            <p>Bank: <strong>QRIS Nasional</strong></p>
+        </div>
+        
+        <div class="timer" id="countdown">
+            Sisa Waktu: 15:00
+        </div>
+        
+        <div class="status" id="paymentStatus">
+            Silakan scan kode QR untuk melakukan pembayaran
+        </div>
+        
+        <a href="#" class="btn" onclick="konfirmasiPembayaran()">Konfirmasi Pembayaran</a>
+    </div>
+
+    <script>
+        // Fungsi hitung mundur
+        function startCountdown() {
+            let time = 900; // 15 menit
+            const countdownEl = document.getElementById('countdown');
+            const statusEl = document.getElementById('paymentStatus');
+
+            const countdownTimer = setInterval(() => {
+                const minutes = Math.floor(time / 60);
+                let seconds = time % 60;
+                
+                // Tambah leading zero jika detik < 10
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                
+                countdownEl.textContent = `Sisa Waktu: ${minutes}:${seconds}`;
+                
+                if (time <= 0) {
+                    clearInterval(countdownTimer);
+                    countdownEl.textContent = 'Waktu Habis!';
+                    statusEl.textContent = 'Pembayaran Kadaluarsa';
+                    statusEl.style.color = 'red';
+                }
+                
+                time--;
+            }, 1000);
+        }
+
+        // Fungsi konfirmasi pembayaran
+        function konfirmasiPembayaran() {
+            const statusEl = document.getElementById('paymentStatus');
+            statusEl.textContent = 'Menunggu Konfirmasi Pembayaran...';
+            statusEl.style.color = 'orange';
+
+            // Simulasi proses konfirmasi
+            setTimeout(() => {
+                statusEl.textContent = 'Pembayaran Berhasil!';
+                statusEl.style.color = 'green';
+            }, 2000);
+        }
+
+        // Jalankan countdown saat halaman dimuat
+        window.onload = startCountdown;
+    </script>
+</body>
+</html>

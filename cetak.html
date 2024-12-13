@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Cetak Struk Pembayaran</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px dashed #333;
+        }
+        .struk-header {
+            text-align: center;
+            border-bottom: 2px dashed #333;
+            padding-bottom: 10px;
+        }
+        .struk-detail {
+            margin-top: 10px;
+        }
+        .struk-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .total {
+            font-weight: bold;
+            border-top: 2px dashed #333;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+        .struk-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 10px;
+        }
+        @media print {
+            body {
+                border: none;
+            }
+            .print-button {
+                display: none;
+            }
+        }
+        .print-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="struk">
+        <div class="struk-header">
+            <h2>TOKO ELEKTRONIK MAJU JAYA</h2>
+            <p>Jl. Merdeka No. 123, Jakarta</p>
+            <p>Telp: 021-1234567</p>
+        </div>
+
+        <div class="struk-detail">
+            <div class="struk-item">
+                <span>Tanggal:</span>
+                <span id="tanggal"></span>
+            </div>
+            <div class="struk-item">
+                <span>Waktu:</span>
+                <span id="waktu"></span>
+            </div>
+            <div class="struk-item">
+                <span>No. Transaksi:</span>
+                <span>TRX-2024-001</span>
+            </div>
+        </div>
+
+        <div class="struk-detail">
+            <h3>Daftar Barang</h3>
+            <div class="struk-item">
+                <span>seblak</span>
+                <span>Rp 12.000.000</span>
+            </div>
+            <div class="struk-item">
+                <span>ceker (2x)</span>
+                <span>Rp 1.000.000</span>
+            </div>
+            <div class="struk-item">
+                <span>krupuk</span>
+                <span>Rp 800.000</span>
+            </div>
+        </div>
+
+        <div class="total">
+            <div class="struk-item">
+                <span>Total Belanja:</span>
+                <span>Rp 13.800.000</span>
+            </div>
+            <div class="struk-item">
+                <span>Bayar:</span>
+                <span>Rp 14.000.000</span>
+            </div>
+            <div class="struk-item">
+                <span>Kembalian:</span>
+                <span>Rp 200.000</span>
+            </div>
+        </div>
+
+        <div class="struk-footer">
+            <p>Terima Kasih</p>
+            <p>Barang yang sudah dibeli tidak dapat dikembalikan</p>
+        </div>
+    </div>
+
+    <button class="print-button" onclick="cetakStruk()">Cetak Struk</button>
+
+    <script>
+        // Fungsi untuk mengatur tanggal dan waktu
+        function setTanggalWaktu() {
+            const sekarang = new Date();
+            
+            // Format tanggal
+            const opsiTanggal = { 
+                day: '2-digit', 
+                month: 'long', 
+                year: 'numeric' 
+            };
+            document.getElementById('tanggal').textContent = sekarang.toLocaleDateString('id-ID', opsiTanggal);
+            
+            // Format waktu
+            document.getElementById('waktu').textContent = sekarang.toLocaleTimeString('id-ID');
+        }
+
+        // Fungsi cetak struk
+        function cetakStruk() {
+            window.print();
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        window.onload = setTanggalWaktu;
+    </script>
+</body>
+</html>

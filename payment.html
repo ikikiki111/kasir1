@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .navbar a.active, .navbar a:hover {
+            background-color: #c0392b;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        table thead {
+            background-color: #ff6f61;
+            color: #fff;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="payment.html">Payment</a>
+    </div>
+    <h1>Daftar Pesanan</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Produk</th>
+                <th>Jumlah</th>
+                <th>Harga</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="orderTable">
+        </tbody>
+    </table>
+    <script src="../shared/scripts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const orders = loadOrders();
+            const table = document.getElementById("orderTable");
+
+            orders.forEach((order, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${order.product}</td>
+                    <td>${order.quantity}</td>
+                    <td>${order.price}</td>
+                    <td><button onclick="removeOrder(${index})">Selesaikan</button></td>
+                `;
+                table.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>
